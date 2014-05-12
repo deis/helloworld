@@ -18,5 +18,5 @@ RUN cd /go/src/github.com/deis/helloworld && go install -v .
 
 
 ENV PORT 80
-CMD ["helloworld"]
+CMD ["/go/bin/helloworld"]
 EXPOSE 80
