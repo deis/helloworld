@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER OpDemand <info@opdemand.com>
 
-# install wget
+# install curl
 RUN apt-get update && apt-get install -qy curl
 
 # install go runtime
@@ -20,4 +20,4 @@ RUN cd /go/src/github.com/deis/helloworld && go install -v .
 
 EXPOSE 80
 
-ENTRYPOINT ["/go/bin/helloworld"]
+ENTRYPOINT ["helloworld"]
