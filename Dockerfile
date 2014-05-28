@@ -1,14 +1,16 @@
-FROM deis/base:latest
+FROM debian:jessie
 MAINTAINER OpDemand <info@opdemand.com>
 
+# install wget
+RUN apt-get update && apt-get install -qy curl
+
 # install go runtime
-RUN wget -O /tmp/go1.2.1.linux-amd64.tar.gz -q https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz
-RUN tar -C /usr/local -xzf /tmp/go1.2.1.linux-amd64.tar.gz
+RUN curl -s https://storage.googleapis.com/golang/go1.2.2.linux-amd64.tar.gz | tar -v -C /usr/local -xz
 
 # prepare go environment
-RUN mkdir -p /go
 ENV GOPATH /go
-ENV PATH /usr/local/go/bin:/go/bin:$PATH
+ENV GOROOT /usr/local/go
+ENV PATH $PATH:/usr/local/go/bin:/go/bin
 
 # add the current build context
 ADD . /go/src/github.com/deis/helloworld
@@ -16,7 +18,6 @@ ADD . /go/src/github.com/deis/helloworld
 # compile the binary
 RUN cd /go/src/github.com/deis/helloworld && go install -v .
 
-
-ENV PORT 80
-CMD ["/go/bin/helloworld"]
 EXPOSE 80
+
+ENTRYPOINT ["/go/bin/helloworld"]
