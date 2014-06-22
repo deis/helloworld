@@ -20,4 +20,4 @@ RUN cd /go/src/github.com/deis/helloworld && go install -v .
 
 EXPOSE 80
 
-ENTRYPOINT ["helloworld"]
+ENTRYPOINT ["/go/bin/helloworld"]
