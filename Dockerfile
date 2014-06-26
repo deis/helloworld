@@ -5,7 +5,7 @@ MAINTAINER OpDemand <info@opdemand.com>
 RUN apt-get update && apt-get install -qy curl
 
 # install go runtime
-RUN curl -s https://storage.googleapis.com/golang/go1.2.2.linux-amd64.tar.gz | tar -v -C /usr/local -xz
+RUN curl -s https://storage.googleapis.com/golang/go1.2.2.linux-amd64.tar.gz | tar -C /usr/local -xz
 
 # prepare go environment
 ENV GOPATH /go
