@@ -1,5 +1,4 @@
 FROM debian:jessie
-MAINTAINER OpDemand <info@opdemand.com>
 
 # install curl
 RUN apt-get update && apt-get install -qy curl
